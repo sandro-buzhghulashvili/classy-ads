@@ -10,7 +10,11 @@ const Navbar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const toggleDropdownHandler = () => {
-    setToggleDropdown((prevValue) => !prevValue);
+    if (window.innerWidth > 1000) {
+      return;
+    } else {
+      setToggleDropdown((prevValue) => !prevValue);
+    }
   };
 
   const toggleNavbarHandler = () => {
@@ -57,6 +61,12 @@ const Navbar = () => {
                 <ChevronDown />
               </motion.span>
             </NavLink>
+            <ul className={`${classes['dropdown-menu']}`}>
+              <li>The Company</li>
+              <li>The Leadership</li>
+              <li>Philosophy</li>
+              <li>Careers</li>
+            </ul>
             <AnimatePresence>
               {toggleDropdown && (
                 <motion.ul
