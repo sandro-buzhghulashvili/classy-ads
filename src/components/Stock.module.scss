@@ -1,0 +1,80 @@
+@import "../scss/variables";
+
+.stocks {
+    margin: 40px auto;
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #fff;
+    transform: translateY(-100px);
+    border-radius: 10px;
+
+    .stock {
+        margin-right: 30px;
+        width: 160px;
+        text-align: center;
+        padding: 40px;
+        border-radius: 10px;
+        transition: .5s;
+        cursor: pointer;
+
+        .icon {
+            margin-bottom: 20px;
+
+            * {
+                width: 30px;
+                height: 30px;
+                color: $primary-color;
+            }
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        span {
+            color: #666666;
+            font-size: 17px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-weight: weight(bold);
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 20px;
+            transition: .5s;
+        }
+
+        @media screen and (min-width: 550px) {
+            &:hover {
+                background-color: $primary-color;
+                transform: translateY(-50px);
+    
+                p,span,.icon * {
+                    color: #fff;
+                }
+    
+                p {
+                    background-color: #1bc5ad;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 80%;
+        .stock {
+            width: 50%;
+            margin-right: 0;
+        }
+    }
+
+    @media screen and (max-width:550px) {
+        .stock {
+            width: 100%;
+        }
+    }
+}

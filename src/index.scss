@@ -1,2 +1,6 @@
 @use "./scss/reset";
 @import "./scss/variables";
+
+body {
+    height: 500vh;
+}
