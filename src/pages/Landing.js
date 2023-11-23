@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 import classes from './Landing.module.scss';
 import Stock from '../components/Stock';
+import FeaturedBar from '../components/FeaturedBar';
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -31,6 +32,7 @@ const LandingPage = () => {
         </motion.p>
       </motion.main>
       <Stock />
+      <FeaturedBar />
     </>
   );
 };

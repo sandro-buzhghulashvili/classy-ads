@@ -1,7 +1,8 @@
 @import "../scss/variables";
 
 .stocks {
-    margin: 40px auto;
+    margin-top: 20px;
+    margin: 0 auto;
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
@@ -51,7 +52,7 @@
         @media screen and (min-width: 550px) {
             &:hover {
                 background-color: $primary-color;
-                transform: translateY(-50px);
+                transform: translateY(-10px);
     
                 p,span,.icon * {
                     color: #fff;
