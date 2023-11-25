@@ -6,6 +6,7 @@ export const ads = [
     reviews: 4.5,
     reviewQuantity: 120,
     productQuantity: 1,
+    img: 'https://thermohouse.ie/wp-content/uploads/2019/04/hero-image.jpg',
   },
   {
     type: 'Books and Magazines',
@@ -14,6 +15,7 @@ export const ads = [
     reviews: 4.2,
     reviewQuantity: 85,
     productQuantity: 50,
+    img: 'https://wordsrated.com/wp-content/uploads/2022/02/Number-of-Books-Published-Per-Year.jpg',
   },
   {
     type: 'Furniture',
@@ -22,6 +24,7 @@ export const ads = [
     reviews: 4.0,
     reviewQuantity: 95,
     productQuantity: 10,
+    img: 'https://hips.hearstapps.com/hmg-prod/images/posters-in-cozy-apartment-interior-royalty-free-image-943910360-1534189931.jpg',
   },
   {
     type: 'Electronics',
@@ -30,6 +33,7 @@ export const ads = [
     reviews: 4.8,
     reviewQuantity: 150,
     productQuantity: 20,
+    img: 'https://www.technewsworld.com/wp-content/uploads/sites/3/2023/06/smart-home-future.jpg',
   },
   {
     type: 'Cars',
@@ -38,6 +42,7 @@ export const ads = [
     reviews: 4.6,
     reviewQuantity: 130,
     productQuantity: 5,
+    img: 'https://www.motortrend.com/uploads/sites/5/2020/05/2020-Audi-A6-sedan-01.jpg',
   },
   {
     type: 'Other',
@@ -46,6 +51,7 @@ export const ads = [
     reviews: 4.3,
     reviewQuantity: 110,
     productQuantity: 30,
+    img: 'https://spokenvision.com/wp-content/uploads/2019/05/handicraft-770x526.jpg',
   },
   {
     type: 'Real Estate',
@@ -54,6 +60,7 @@ export const ads = [
     reviews: 4.7,
     reviewQuantity: 140,
     productQuantity: 1,
+    img: 'https://thermohouse.ie/wp-content/uploads/2019/04/hero-image.jpg',
   },
   {
     type: 'Books and Magazines',
@@ -62,6 +69,7 @@ export const ads = [
     reviews: 4.1,
     reviewQuantity: 80,
     productQuantity: 25,
+    img: 'https://wordsrated.com/wp-content/uploads/2022/02/Number-of-Books-Published-Per-Year.jpg',
   },
   {
     type: 'Furniture',
@@ -70,6 +78,7 @@ export const ads = [
     reviews: 4.4,
     reviewQuantity: 100,
     productQuantity: 8,
+    img: 'https://hips.hearstapps.com/hmg-prod/images/posters-in-cozy-apartment-interior-royalty-free-image-943910360-1534189931.jpg',
   },
   {
     type: 'Electronics',
@@ -78,5 +87,6 @@ export const ads = [
     reviews: 4.9,
     reviewQuantity: 160,
     productQuantity: 15,
+    img: 'https://cdn.thewirecutter.com/wp-content/media/2023/11/gamingconsoles-2048px-00633.jpg',
   },
 ];

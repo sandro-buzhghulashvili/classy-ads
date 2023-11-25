@@ -1,27 +1,188 @@
-@import "../scss/variables";
+@import '../scss/variables';
 
 .featured {
-    @include container;
-    margin: auto;
+  margin: auto;
 
-    p {
-        font-size: 20px;
-        margin-bottom: 40px;
+  @media screen and (min-width: 1140px) {
+    max-width: 1000px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 50px;
+
+    .card {
+      margin-right: 50px;
+      transition: ease-in-out 0.5s;
+
+      img {
+        width: 250px;
+        height: 150px;
+        margin-bottom: 10px;
+      }
+
+      .type {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        margin-bottom: 10px;
+
+        span {
+          &:nth-of-type(1) {
+            font-size: 11px;
+            font-weight: weight(bold);
+            padding: 5px 20px;
+            background-color: #e9ecef;
+            border-radius: 30px;
+          }
+
+          &:nth-of-type(2) * {
+            width: 20px;
+            height: 20px;
+            stroke: none;
+            fill: $primary-color;
+            cursor: pointer;
+            transition: 0.2s;
+          }
+
+          &:nth-of-type(2):hover {
+            * {
+              fill: white;
+              padding: 5px;
+              background-color: #f23a2e;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+
+      h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: $primary-color;
+      }
+
+      p {
+        font-size: 13px;
+        color: #4d4d4d;
+        margin-bottom: 20px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          margin: 0;
+        }
+      }
     }
+  }
+
+  .slider-btns {
+    display: flex;
+    justify-content: center;
+
+    span {
+      cursor: pointer;
+      margin: 0 20px;
+
+      * {
+        color: #495057;
+        width: 30px;
+        height: 30px;
+        transition: 0.3s;
+      }
+
+      &:hover * {
+        color: $primary-color;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1145px) {
+    text-align: center;
+
+    padding: 0 100px;
+    .carousel .card img {
+      width: 320px;
+    }
+  }
+  @media screen and (max-width: 950px) {
+    padding: 0;
+    overflow: hidden;
 
     .carousel {
-        display: flex;
-        overflow: hidden;
+      width: fit-content;
+      position: relative;
 
-        
-    .card {
-        margin: 0 20px;
-        
+      .card {
+        width: 100vw;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 0;
 
         img {
-            width: 300px;
-            height: 180px;
+          height: 250px;
+          width: 50%;
         }
+
+        .type,
+        h2,
+        p,
+        .rating {
+          width: 50% !important;
+        }
+      }
     }
+  }
+
+  @media screen and (max-width: 700px) {
+    .carousel .card {
+      padding: 20px;
+      align-items: flex-start;
+
+      .type {
+        margin-bottom: 20px;
+        padding: 0;
+      }
+
+      h2,
+      p {
+        text-align: left;
+      }
+
+      .rating {
+        div {
+          display: flex;
+        }
+      }
     }
+    .carousel .card {
+      .type,
+      h2,
+      p,
+      img,
+      .rating {
+        width: 100% !important;
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .carousel .card {
+      margin-right: 0;
+    }
+  }
 }
