@@ -30,6 +30,8 @@
   }
 
   .profiles {
+    position: relative;
+    left: 100%;
     display: flex;
 
     .profile {
@@ -56,6 +58,28 @@
         font-size: 24px;
         line-height: 1.7;
       }
+    }
+  }
+
+  .control .icon {
+    margin: 0 10px;
+    cursor: pointer;
+
+    &.active * {
+      fill: $primary-color;
+    }
+
+    * {
+      width: 15px;
+      height: 15px;
+      fill: #ccc;
+      stroke: none;
+    }
+  }
+
+  @media screen and (max-width:650px) {
+    .profiles .profile h1 {
+      font-size: 18px;
     }
   }
 }
