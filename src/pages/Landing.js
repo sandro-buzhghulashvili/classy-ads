@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import classes from './Landing.module.scss';
 import Stock from '../components/Stock';
 import FeaturedBar from '../components/FeaturedBar';
+import PopularProducts from '../components/PopularProducts';
+import Testimonials from '../components/Testimonials';
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -33,6 +35,8 @@ const LandingPage = () => {
       </motion.main>
       <Stock />
       <FeaturedBar />
+      <PopularProducts />
+      <Testimonials />
     </>
   );
 };
