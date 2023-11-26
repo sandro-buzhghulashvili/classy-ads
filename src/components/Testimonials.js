@@ -35,7 +35,6 @@ const Testimonials = () => {
         style={{ width: `${testimonials.length * 100}%` }}
       >
         {testimonials.map((person) => {
-          console.log(person)
           return (
             <motion.div animate={{ x: `-${sliderIndex * 100}%` }} transition={{duration : 1, type : "spring"}} style={{x : `-${sliderIndex * 100}%`}} className={classes.profile} key={person.id}>
               <img src={person.img} alt="person" />
