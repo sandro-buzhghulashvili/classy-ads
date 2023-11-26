@@ -6,6 +6,7 @@ import Stock from '../components/Stock';
 import FeaturedBar from '../components/FeaturedBar';
 import PopularProducts from '../components/PopularProducts';
 import Testimonials from '../components/Testimonials';
+import Blog from '../components/Blog';
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -37,6 +38,7 @@ const LandingPage = () => {
       <FeaturedBar />
       <PopularProducts />
       <Testimonials />
+      <Blog />
     </>
   );
 };

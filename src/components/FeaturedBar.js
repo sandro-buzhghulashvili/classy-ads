@@ -100,50 +100,52 @@ const FeaturedBar = () => {
     fetchAds();
   }, []);
   return (
-    <motion.div style={{ y: sliderY }} className={classes.featured}>
-      <p>Featured Ads</p>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1 },
-        }}
-        initial="hidden"
-        whileInView="visible"
-        className={classes.carousel}
-      >
-        {featuredAds.map((ad, index) => {
-          return (
-            <motion.div
-              style={{ x: `${-(sliderIndex * 100)}%` }}
-              key={featuredAds.indexOf(ad)}
-              className={classes.card}
-            >
-              <img src={Images[index]} alt="ad" />
-              <div className={classes.type}>
-                <span>{ad.type}</span>
-                <span className={classes.icon}>
-                  <Heart />
-                </span>
-              </div>
-              <h2>{ad.title}</h2>
-              <p>{ad.location}</p>
-              <div className={classes.rating}>
-                {displayStarRatings(Math.floor(ad.reviews))}
-                <p>( {ad.reviewQuantity} reviews )</p>
-              </div>
-            </motion.div>
-          );
-        })}
+    <div>
+      <motion.div style={{ y: sliderY }} className={classes.featured}>
+        <p>Featured Ads</p>
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          className={classes.carousel}
+        >
+          {featuredAds.map((ad, index) => {
+            return (
+              <motion.div
+                style={{ x: `${-(sliderIndex * 100)}%` }}
+                key={featuredAds.indexOf(ad)}
+                className={classes.card}
+              >
+                <img src={Images[index]} alt="ad" />
+                <div className={classes.type}>
+                  <span>{ad.type}</span>
+                  <span className={classes.icon}>
+                    <Heart />
+                  </span>
+                </div>
+                <h2>{ad.title}</h2>
+                <p>{ad.location}</p>
+                <div className={classes.rating}>
+                  {displayStarRatings(Math.floor(ad.reviews))}
+                  <p>( {ad.reviewQuantity} reviews )</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+        <div className={classes['slider-btns']}>
+          <span onClick={slideLeft}>
+            <ChevronLeft />
+          </span>
+          <span onClick={slideRight}>
+            <ChevronRight />
+          </span>
+        </div>
       </motion.div>
-      <div className={classes['slider-btns']}>
-        <span onClick={slideLeft}>
-          <ChevronLeft />
-        </span>
-        <span onClick={slideRight}>
-          <ChevronRight />
-        </span>
-      </div>
-    </motion.div>
+    </div>
   );
 };
 

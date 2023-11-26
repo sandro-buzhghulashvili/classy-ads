@@ -14,8 +14,8 @@ const iconArray = [
 ];
 
 const Stock = () => {
-  const {scrollY} = useScroll()
-  const stocksY = useTransform(scrollY, [0, 600, 800], [-200, -350, -500])
+  const { scrollY } = useScroll();
+  const stocksY = useTransform(scrollY, [0, 600, 800], [-200, -350, -500]);
   const [ads, setAds] = useState([]);
   const stock = {};
 
@@ -48,7 +48,7 @@ const Stock = () => {
     <motion.div
       initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, translateY: -200 }}
-      style={{translateY : stocksY}}
+      style={{ translateY: stocksY }}
       transition={{ duration: 1 }}
       className={classes.stocks}
     >
