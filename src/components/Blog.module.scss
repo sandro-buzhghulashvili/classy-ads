@@ -1,115 +1,116 @@
-@import "../scss/variables";
+@import '../scss/variables';
 
 .blog {
-    width: 80%;
-    margin: 0 auto;
-    margin-bottom: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .header {
-        font-size: 32px;
-        color: $primary-color;
+  .header {
+    font-size: 32px;
+    color: $primary-color;
+    margin-bottom: 10px;
+  }
+
+  .headerp {
+    position: relative;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 100px;
+    text-align: center;
+
+    &::before {
+      content: '';
+      width: 70px;
+      height: 4px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 20px;
+      background-color: $primary-color;
+    }
+  }
+
+  .blog-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .card {
+      width: 300px;
+      margin: 40px;
+
+      img {
+        width: 100%;
+        border-radius: 20px;
+        height: 200px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: weight(regular);
         margin-bottom: 10px;
       }
-    
-    .headerp {
-        position: relative;
-        font-size: 16px;
-        color: rgba(0, 0, 0, 0.5);
-        margin-bottom: 100px;
-        text-align: center;
-    
-        &::before {
-          content: '';
-          width: 70px;
-          height: 4px;
-          position: absolute;
-          top: 40px;
-          left: 0;
-          right: 0;
-          margin: auto;
-          border-radius: 20px;
-          background-color: $primary-color;
-        }
-    }
 
-    .blog-cards {
+      .info {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        margin-bottom: 30px;
+        color: #b3b3b3;
+        font-size: 14px;
+        align-items: center;
+      }
 
-        .card {
-            width: 300px;
-            margin: 40px;
-
-            img {
-                width: 100%;
-                border-radius: 20px;
-                height: 200px;
-                margin-bottom: 20px;
-            }
-
-            h1 {
-                font-size: 20px;
-                font-weight: weight(regular);
-                margin-bottom: 10px;
-            }
-
-            .info {
-                display: flex;
-                margin-bottom: 30px;
-                color: #b3b3b3;
-                font-size: 14px;
-                align-items: center;
-            }
-
-            article {
-                color: #4d4d4d;
-                font-size: 16px;
-            }
-        }
-    }
-
-    a {
-        padding: 8px 24px;
-        text-decoration: none;
-        color: #fff;
-        background-color: $primary-color;
-        border-radius: 5px;
+      article {
+        color: #4d4d4d;
         font-size: 16px;
+      }
+    }
+  }
 
-        &:hover {
-            background-color: rgba($primary-color, 0.7);
-        }
+  a {
+    padding: 8px 24px;
+    text-decoration: none;
+    color: #fff;
+    background-color: $primary-color;
+    border-radius: 5px;
+    font-size: 16px;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.7);
+    }
+  }
+
+  @media screen and (max-width: 965px) {
+    .blog-cards .card {
+      width: 70%;
+
+      .info {
+        flex-wrap: wrap;
+      }
+
+      img {
+        height: 300px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    .blog-cards .card {
+      width: 100%;
+
+      img {
+        height: 200px;
+      }
     }
 
-    @media screen and (max-width:965px) {
-        .blog-cards .card {
-            width: 70%;
-
-            .info {
-                flex-wrap: wrap;
-            }
-
-            img {
-                height: 300px;
-            }
-        }
+    .headerp::before {
+      top: 60px;
     }
-
-    @media screen and (max-width:600px) {
-        .blog-cards .card {
-            width: 100%;
-
-            img {
-                height: 200px;
-            }
-        }
-
-        .headerp::before {
-            top: 60px;
-        }
-    }
+  }
 }

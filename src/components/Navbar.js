@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import userContext from '../store/user-context';
+
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -6,6 +8,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import classes from './Navbar.module.scss';
 
 const Navbar = () => {
+  const ctx = useContext(userContext);
+
   const [toggleNavbar, setToggleNavbar] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -16,6 +20,8 @@ const Navbar = () => {
       setToggleDropdown((prevValue) => !prevValue);
     }
   };
+
+  console.log(ctx);
 
   const toggleNavbarHandler = () => {
     setToggleNavbar((prevValue) => !prevValue);
@@ -104,13 +110,13 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <a className={classes.auth} href="#login">
+        <NavLink className={classes.auth} to="form?mode=login">
           Login
-        </a>
-        <a className={classes.auth} href="#login">
+        </NavLink>
+        <NavLink className={classes.auth} to="form?mode=signup">
           Register
-        </a>
-        <button>+ Post an Ad</button>
+        </NavLink>
+        {/* <button>+ Post an Ad</button> */}
       </div>
     </div>
   );

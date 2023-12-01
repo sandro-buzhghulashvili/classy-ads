@@ -1,0 +1,78 @@
+@import '../scss/variables';
+
+.form {
+  display: flex;
+
+  form {
+    width: 35%;
+    margin: 80px auto;
+    padding: 20px;
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      margin-bottom: 20px;
+
+      &.invalid {
+        input {
+          border: 2px solid red;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      label {
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        font-size: 16px;
+        font-weight: weight(regular);
+
+        a {
+          text-decoration: none;
+          color: $primary-color;
+        }
+      }
+
+      input {
+        padding: 6px 12px;
+        border: none;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+
+        &:focus {
+          outline: 1px solid $primary-color;
+        }
+      }
+
+      button {
+        all: unset;
+        width: fit-content;
+        padding: 8px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        color: #fff;
+        background-color: $primary-color;
+
+        &:disabled {
+          cursor: not-allowed;
+          filter: opacity(0.5);
+        }
+
+        &:hover {
+          @media screen and (min-width: 600px) {
+            filter: brightness(85%);
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1000px) {
+      width: 80%;
+    }
+  }
+}

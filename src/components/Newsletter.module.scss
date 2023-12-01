@@ -1,10 +1,75 @@
-@import "../scss/variables";
+@import '../scss/variables';
 
 .newsletter {
-    padding: 48px 0;
+  padding: 48px 0;
+  background-color: $primary-color;
 
-    .container {
-        @include container;
-        
+  .container {
+    @include container;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+
+    .caption {
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: weight(regular);
+      }
+
+      p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
+
+    .input {
+      input {
+        border: none;
+        border-bottom: 1px solid #fff;
+        background: none;
+        padding: 12px;
+        font-size: 1.1rem;
+        padding-left: 10px;
+        caret-color: #fff;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: #fff;
+          font-size: 18px;
+        }
+      }
+
+      button {
+        display: inline-block;
+        padding: 12px 20px;
+        border: none;
+        border: 1px solid #fff;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          color: #fff;
+          background-color: black;
+          border: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .container {
+      flex-direction: column;
+      padding: 10px 30px;
+
+      .caption {
+        margin-bottom: 40px;
+      }
+    }
+  }
 }
