@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import userContext from '../store/user-context';
 
 const UserContextProvider = (props) => {
-  const user = undefined;
+  const [user,setUser] = useState(undefined)
+
+  const login = (userData) => {
+    setUser(userData)
+  }
+
+  const logout = () => {
+    setUser(undefined)
+  }
+
   return (
-    <userContext.Provider value={{ user }}>
+    <userContext.Provider value={{ user, login, logout }}>
       {props.children}
     </userContext.Provider>
   );

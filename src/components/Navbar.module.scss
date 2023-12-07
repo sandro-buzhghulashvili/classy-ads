@@ -144,6 +144,22 @@
       }
     }
 
+    .profile {
+      text-decoration: none;
+      color: black;
+      transition: .5s;
+
+      &.active {
+        color: $primary-color;
+      }
+
+      @media screen and (min-width: 600px) {
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
     button {
       all: unset;
       margin-left: 30px;
@@ -168,6 +184,12 @@
       &:hover {
         color: $primary-color;
       }
+    }
+
+    .profile {
+      margin-bottom: 20px;
+      padding: 25px 0;
+      font-size: 18px;
     }
 
     .nav-links {

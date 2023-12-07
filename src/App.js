@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LayoutPage from './pages/Layout';
+import UserContextProvider from "./providers/UserContextProvider"
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LandingPage from './pages/Landing';
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return <UserContextProvider><RouterProvider router={router} /></UserContextProvider>;
 }
 
 export default App;

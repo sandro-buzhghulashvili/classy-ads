@@ -110,13 +110,21 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <NavLink className={classes.auth} to="form?mode=login">
-          Login
-        </NavLink>
-        <NavLink className={classes.auth} to="form?mode=signup">
-          Register
-        </NavLink>
-        {/* <button>+ Post an Ad</button> */}
+        {
+          !ctx.user ?
+          <>
+          <NavLink className={classes.auth} to="form?mode=login">
+            Login
+          </NavLink>
+          <NavLink className={classes.auth} to="form?mode=signup">
+            Register
+          </NavLink> 
+          </> :
+          <>
+          <NavLink to='profile' className={({isActive}) => `${classes.profile} ${isActive ? classes.active : undefined}`}>Profile</NavLink>
+          <button>+ Post an Ad</button>
+          </>
+        }
       </div>
     </div>
   );
