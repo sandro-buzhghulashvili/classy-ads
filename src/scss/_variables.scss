@@ -1,21 +1,27 @@
-$primary-color : #30e3ca;
-$font-weights : (
-    "regular" : 400,
-    "bold" : 700
+$primary-color: #30e3ca;
+$font-weights: (
+  'regular': 400,
+  'bold': 700,
 );
 
 @function weight($weight) {
-    @return map-get($font-weights, $weight )
-};
+  @return map-get($font-weights, $weight);
+}
 
 @mixin container {
-    @media (min-width: 768px) {
-        max-width: 720px;
-    }
-    @media (min-width: 992px) {
-        max-width: 960px;
-    }
-    @media screen and (min-width : 1140px) {
-        max-width: 1140px;
-    }
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media screen and (min-width: 1140px) {
+    max-width: 1140px;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
 }

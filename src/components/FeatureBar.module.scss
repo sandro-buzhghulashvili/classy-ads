@@ -52,14 +52,15 @@
             transition: 0.2s;
           }
 
-          &:nth-of-type(2):hover {
-            * {
-              fill: white;
-              padding: 5px;
-              background-color: #f23a2e;
-              width: 30px;
-              height: 30px;
-              border-radius: 50%;
+          &:nth-of-type(2).favorite * {
+            fill: #f23a2e;
+          }
+
+          @media screen and (min-width: 700px) {
+            &:nth-of-type(2):hover {
+              * {
+                fill: #f23a2e;
+              }
             }
           }
         }

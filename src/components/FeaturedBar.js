@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useState, useContext } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 
 import furnitureImg from '../assets/furniture.jpg';
 import consoleImg from '../assets/console.jpg';
@@ -10,6 +15,9 @@ import smartHomeImg from '../assets/smart-home.jpg';
 import classes from './FeatureBar.module.scss';
 import { ChevronLeft, ChevronRight, Heart, Star } from 'lucide-react';
 
+import FlashMessage from './UI/FlashMessage';
+import userContext from '../store/user-context';
+
 const Images = [
   consoleImg,
   smartHomeImg,
@@ -19,6 +27,9 @@ const Images = [
 ];
 
 const FeaturedBar = () => {
+  const ctx = useContext(userContext);
+
+  const [showFlash, setShowFlash] = useState(false);
   const [featuredAds, setFeaturedAds] = useState([]);
   const [sliderIndex, setSliderIndex] = useState(0);
 
@@ -96,11 +107,65 @@ const FeaturedBar = () => {
     );
   };
 
+  const flashMessageHandler = () => {
+    setShowFlash(false);
+  };
+
+  const addToFavorites = (ad) => {
+    setShowFlash(true);
+
+    console.log(ctx);
+
+    if (ctx.user) {
+      if (ctx.user.favorites) {
+        const existingIndex = ctx.user.favorites.findIndex(
+          (element) => element.title === ad.title
+        );
+        if (existingIndex !== -1) {
+          ctx.user.favorites = ctx.user.favorites.filter(
+            (element) => element.title !== ad.title
+          );
+          setShowFlash('Removed');
+        } else {
+          ctx.user.favorites.push(ad);
+        }
+      } else {
+        ctx.user.favorites = [ad];
+      }
+    }
+  };
+
   useEffect(() => {
     fetchAds();
   }, []);
   return (
     <div>
+      <AnimatePresence>
+        {showFlash &&
+          (showFlash === 'Removed' ? (
+            <FlashMessage
+              key="removed"
+              success={true}
+              text="Removed from favorites"
+              onClose={flashMessageHandler}
+            />
+          ) : !ctx.user ? (
+            <FlashMessage
+              key="notLoggedIn"
+              success={false}
+              text="User is not logged in"
+              onClose={flashMessageHandler}
+            />
+          ) : (
+            <FlashMessage
+              key="addedToFavorites"
+              success={true}
+              text="Added to favorites"
+              onClose={flashMessageHandler}
+            />
+          ))}
+      </AnimatePresence>
+
       <motion.div style={{ y: sliderY }} className={classes.featured}>
         <p>Featured Ads</p>
         <motion.div
@@ -122,14 +187,27 @@ const FeaturedBar = () => {
                 <img src={Images[index]} alt="ad" />
                 <div className={classes.type}>
                   <span>{ad.type}</span>
-                  <span className={classes.icon}>
+                  <span
+                    className={`${classes.icon} ${
+                      ctx.user
+                        ? ctx.user.favorites
+                          ? ctx.user.favorites.find(
+                              (element) => element.title === ad.title
+                            )
+                            ? classes.favorite
+                            : undefined
+                          : undefined
+                        : undefined
+                    }`}
+                    onClick={() => addToFavorites(ad)}
+                  >
                     <Heart />
                   </span>
                 </div>
                 <h2>{ad.title}</h2>
                 <p>{ad.location}</p>
                 <div className={classes.rating}>
-                  {displayStarRatings(Math.floor(ad.reviews))}
+                  {displayStarRatings(Math.round(ad.reviews))}
                   <p>( {ad.reviewQuantity} reviews )</p>
                 </div>
               </motion.div>

@@ -13,6 +13,12 @@ const ErrorPage = () => {
   if (error.status === 404) {
     message = 'Resource was not found';
   }
+
+  if (error.status === 500) {
+    message = error.data.message;
+  }
+
+  console.log(error);
   return (
     <>
       <Navbar />

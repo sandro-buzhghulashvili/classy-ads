@@ -5,10 +5,10 @@ import useInput from '../hooks/use-input';
 import userContext from '../store/user-context';
 
 export default function Form() {
-  const userCtx = useContext(userContext)
+  const userCtx = useContext(userContext);
 
-  const navigate = useNavigate()
-  const [error,setError] = useState(false)
+  const navigate = useNavigate();
+  const [error, setError] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   const [searchParams] = useSearchParams();
   const {
@@ -43,70 +43,76 @@ export default function Form() {
 
   const registerNewUser = async () => {
     try {
-      const users = await fetch("https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json")
-      const usersData = Object.values(await users.json())
-      let extistingUser = usersData.find(user => user.email === emailValue)
+      const users = await fetch(
+        'https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json'
+      );
+      const usersData = Object.values(await users.json());
+      let extistingUser = usersData.find((user) => user.email === emailValue);
 
-      if(!extistingUser) {
+      if (!extistingUser) {
         const user = {
-          email : emailValue,
-          password : passwordValue
-        }
-        const res = await fetch("https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json", {
-          method : 'POST',
-          headers : {
-            'Content-Type' : 'application/json'
-          },
-          body : JSON.stringify(user)
-        })
+          email: emailValue,
+          password: passwordValue,
+        };
+        const res = await fetch(
+          'https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+          }
+        );
 
-        if(!res.ok) {
-          setError('Could not registered user')
+        if (!res.ok) {
+          setError('Could not registered user');
         } else {
-          userCtx.login(user)
-          navigate('/')
+          userCtx.login(user);
+          navigate('/');
         }
       } else {
-        setError('User with following mail already exists')
+        setError('User with following mail already exists');
       }
-    } catch(e) {
-      setError(e)
+    } catch (e) {
+      setError(e);
     }
-  }
+  };
 
   const loginUser = async () => {
     try {
-      const users = await fetch("https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json")
-      const usersData = Object.values(await users.json())
+      const users = await fetch(
+        'https://classy-ads-8216b-default-rtdb.firebaseio.com/users.json'
+      );
+      const usersData = Object.values(await users.json());
 
       const userData = {
-        email : emailValue,
-        password : passwordValue
-      }
+        email: emailValue,
+        password: passwordValue,
+      };
 
-      usersData.forEach(user => {
-        if(user.email === emailValue && user.password === passwordValue) {
-          userCtx.login(userData)
-          navigate('/')
+      usersData.forEach((user) => {
+        if (user.email === emailValue && user.password === passwordValue) {
+          userCtx.login(userData);
+          navigate('/');
         } else {
-          setError('Username or password is invalid')
+          setError('Username or password is invalid');
         }
-      })
-    } catch(e) {
-      setError(e)
+      });
+    } catch (e) {
+      setError(e);
     }
-  }
+  };
 
-  const submitHandler = event => {
-    event.preventDefault()
+  const submitHandler = (event) => {
+    event.preventDefault();
 
-    if(!isLogin) {
-      registerNewUser()
+    if (!isLogin) {
+      registerNewUser();
     } else {
-      loginUser()
+      loginUser();
     }
-
-  }
+  };
 
   useEffect(() => {
     if (isLogin) {
@@ -116,13 +122,25 @@ export default function Form() {
         setFormIsValid(false);
       }
     } else {
-      if (emailIsValid && passwordIsValid && confirmPasswordIsValid && passwordValue === confirmPasswordValue) {
+      if (
+        emailIsValid &&
+        passwordIsValid &&
+        confirmPasswordIsValid &&
+        passwordValue === confirmPasswordValue
+      ) {
         setFormIsValid(true);
       } else {
         setFormIsValid(false);
       }
     }
-  }, [emailIsValid, passwordIsValid, confirmPasswordIsValid, isLogin, passwordValue, confirmPasswordValue]);
+  }, [
+    emailIsValid,
+    passwordIsValid,
+    confirmPasswordIsValid,
+    isLogin,
+    passwordValue,
+    confirmPasswordValue,
+  ]);
 
   return (
     <div className={classes.form}>
@@ -182,12 +200,11 @@ export default function Form() {
             </h3>
           )}
         </div>
-        {
-          error &&
+        {error && (
           <div className={classes['form-control']}>
             <p className={classes['error-text']}>{error}</p>
           </div>
-        }
+        )}
         <div className={classes['form-control']}>
           <button disabled={!formIsValid}>
             {!isLogin ? 'Register' : 'Sign up'}
