@@ -6,9 +6,34 @@
   display: flex;
 
   .products {
-    width: 70%;
+    position: relative;
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
+
+    .pagination {
+      list-style: none;
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: fit-content;
+
+      li {
+        display: inline-block;
+        cursor: pointer;
+        margin: 30px 10px;
+        padding: 20px;
+        font-weight: weight(bold);
+        border-radius: 20px;
+
+        &.active {
+          background-color: $primary-color;
+          color: #fff;
+        }
+      }
+    }
 
     .product {
       width: 300px;
@@ -47,6 +72,44 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+      }
+    }
+  }
+
+  .filter {
+    h2 {
+      font-weight: weight(regular);
+      margin-bottom: 30px;
+    }
+
+    input {
+      padding: 6px 12px;
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      border: 1px solid lightgray;
+      transition: .5s;
+      margin-bottom: 20px;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+
+    select {
+      position: relative;
+      padding: 6px 12px;
+      font-size: 16px;
+      width: 100%;
+      border: none;
+      border: 1px solid lightgray;
+      transition: .5s;
+      margin-bottom: 20px;      
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
       }
     }
   }
