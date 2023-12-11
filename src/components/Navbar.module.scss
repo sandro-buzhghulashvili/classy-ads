@@ -147,7 +147,7 @@
     .profile {
       text-decoration: none;
       color: black;
-      transition: .5s;
+      transition: 0.5s;
 
       &.active {
         color: $primary-color;
@@ -160,13 +160,15 @@
       }
     }
 
-    button {
+    .new-ad {
+      text-decoration: none;
       all: unset;
       margin-left: 30px;
       padding: 10px 20px;
       color: white;
       background-color: $primary-color;
       border-radius: 10px;
+      cursor: pointer;
     }
   }
 
@@ -288,7 +290,7 @@
         border: none !important;
       }
 
-      button {
+      .new-ad {
         margin: 0;
       }
     }

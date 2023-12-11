@@ -2,14 +2,19 @@
 
 .ads {
   @include container;
+  max-width: 1200px !important;
   margin: 200px auto;
   display: flex;
 
+  .disclaimer {
+    width: 50%;
+  }
+
   .products {
     position: relative;
-    width: 75%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .pagination {
       list-style: none;
@@ -88,9 +93,9 @@
       width: 100%;
       border: none;
       border: 1px solid lightgray;
-      transition: .5s;
+      transition: 0.5s;
       margin-bottom: 20px;
-      
+
       &:focus {
         outline: none;
         border-color: $primary-color;
@@ -104,12 +109,42 @@
       width: 100%;
       border: none;
       border: 1px solid lightgray;
-      transition: .5s;
-      margin-bottom: 20px;      
-      
+      transition: 0.5s;
+      margin-bottom: 20px;
+
       &:focus {
         outline: none;
         border-color: $primary-color;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1240px) {
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .filter {
+      width: 50%;
+      margin-bottom: 100px;
+
+      @include mobile {
+        width: 80%;
+      }
+    }
+
+    .products {
+      justify-content: center;
+
+      .pagination {
+        bottom: -150px;
+      }
+
+      .product {
+        margin: 20px 40px !important;
+
+        @include mobile {
+          width: 80%;
+        }
       }
     }
   }

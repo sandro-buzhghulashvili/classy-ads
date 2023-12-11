@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import userContext from '../store/user-context';
 
 const UserContextProvider = (props) => {
-  const [user,setUser] = useState(undefined)
+  const [user, setUser] = useState(undefined);
+  const [flashMessage, setFlashMessage] = useState(undefined);
 
   const login = (userData) => {
-    setUser(userData)
-  }
+    setUser(userData);
+  };
 
   const logout = () => {
-    setUser(undefined)
-  }
+    setUser(undefined);
+  };
+
+  const clearFlashMessage = () => {
+    setFlashMessage(undefined);
+  };
 
   return (
-    <userContext.Provider value={{ user, login, logout }}>
+    <userContext.Provider value={{ user, login, logout, flashMessage }}>
       {props.children}
     </userContext.Provider>
   );

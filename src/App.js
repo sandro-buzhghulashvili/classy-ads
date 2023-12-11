@@ -9,6 +9,7 @@ import ErrorPage from './pages/Error';
 import FormPage from './pages/Form';
 import ProfilePage from './pages/Profile';
 import ProductsPage, { loader as productsLoader } from './pages/Products';
+import NewAd from './pages/NewAd';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: 'ads',
         element: <ProductsPage />,
         loader: productsLoader,
+      },
+      {
+        path: 'new',
+        element: <NewAd />,
       },
     ],
   },

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import userContext from '../store/user-context';
 
 import { ChevronDown, Menu, X } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import classes from './Navbar.module.scss';
@@ -61,12 +61,12 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className={classes.dropdown}>
-            <NavLink onClick={toggleDropdownHandler}>
+            <a href="#nowhere" onClick={toggleDropdownHandler}>
               About
               <motion.span animate={{ rotate: toggleDropdown ? 180 : 0 }}>
                 <ChevronDown />
               </motion.span>
-            </NavLink>
+            </a>
             <ul className={`${classes['dropdown-menu']}`}>
               <li>The Company</li>
               <li>The Leadership</li>
@@ -110,21 +110,30 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        {
-          !ctx.user ?
+        {!ctx.user ? (
           <>
-          <NavLink className={classes.auth} to="form?mode=login">
-            Login
-          </NavLink>
-          <NavLink className={classes.auth} to="form?mode=signup">
-            Register
-          </NavLink> 
-          </> :
-          <>
-          <NavLink to='profile' className={({isActive}) => `${classes.profile} ${isActive ? classes.active : undefined}`}>Profile</NavLink>
-          <button>+ Post an Ad</button>
+            <NavLink className={classes.auth} to="form?mode=login">
+              Login
+            </NavLink>
+            <NavLink className={classes.auth} to="form?mode=signup">
+              Register
+            </NavLink>
           </>
-        }
+        ) : (
+          <>
+            <NavLink
+              to="profile"
+              className={({ isActive }) =>
+                `${classes.profile} ${isActive ? classes.active : undefined}`
+              }
+            >
+              Profile
+            </NavLink>
+            <Link to="new" className={classes['new-ad']}>
+              + Post an Ad
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
