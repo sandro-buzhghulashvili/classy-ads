@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import userContext from '../store/user-context';
+
+import { useNavigate } from 'react-router';
 
 import classes from './Profile.module.scss';
 import { Star } from 'lucide-react';
 
 const ProfilePage = () => {
   const ctx = useContext(userContext);
+  const navigate = useNavigate()
 
   const displayStarRatings = (rating) => {
     const fullStars = Array.from({ length: rating }, (_, index) => (
@@ -23,6 +26,17 @@ const ProfilePage = () => {
       </div>
     );
   };
+
+  useEffect(() => {
+    if(!ctx.user) {
+      ctx.applyFlashMessage({status : 'error', message : "User is not logged in"})
+      navigate('/')
+    }
+  }, [ctx,navigate])
+
+  if(!ctx.user) {
+    return
+  }
 
   return (
     <div className={classes.profile}>

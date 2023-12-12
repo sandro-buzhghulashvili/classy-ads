@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'new',
-        element: <NewAd />,
+        element: <NewAd />
       },
     ],
   },

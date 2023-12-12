@@ -1,0 +1,57 @@
+@import "../scss/variables";
+
+.form {
+    margin: 100px auto;
+    width: 30%;
+    padding: 20px;
+
+    .form-control {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+
+        &.error {
+            input {
+                border: 1px solid red;
+            }
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            border: 1px solid lightgrey;
+            padding: 6px 12px;
+            font-size: 18px;
+            transition: .3s;
+
+            &:focus {
+                outline: none;
+                border: 1px solid $primary-color;
+            }
+        }
+
+        .submit {
+            border: none;
+            padding: 10px 30px;
+            background-color: $primary-color;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 18px;
+            width: fit-content;
+            font-weight: weight(bold);
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @include mobile {
+        width: 85%;
+    }
+}

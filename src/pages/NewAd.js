@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
+import React, {useContext,useEffect} from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import userContext from '../store/user-context';
+import { useNavigate } from 'react-router';
+
+import NewAdForm from '../components/NewAdForm';
 
 const NewAd = () => {
-  const navigate = useNavigate();
+  const ctx = useContext(userContext)
+  const navigate = useNavigate()
+
+
   useEffect(() => {
-    setTimeout(() => {
-      navigate('/ads');
-    }, 2000);
-  }, []);
-  return <h1 style={{ margin: '100px 0' }}>New ad</h1>;
+    if(!ctx.user) {
+      ctx.applyFlashMessage({status : 'error', message : "User is not logged in"})
+      navigate('/')
+    }
+  }, [ctx,navigate])
+  return <NewAdForm />;
 };
 
 export default NewAd;

@@ -17,8 +17,12 @@ const UserContextProvider = (props) => {
     setFlashMessage(undefined);
   };
 
+  const applyFlashMessage = (msg) => {
+    setFlashMessage(msg)
+  }
+
   return (
-    <userContext.Provider value={{ user, login, logout, flashMessage }}>
+    <userContext.Provider value={{ user, login, logout, flashMessage, clearFlashMessage, applyFlashMessage }}>
       {props.children}
     </userContext.Provider>
   );
