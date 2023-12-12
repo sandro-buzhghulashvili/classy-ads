@@ -5,7 +5,9 @@ import Ads from '../components/Ads';
 
 const ProductsPage = () => {
   const data = useLoaderData();
-  const ads = Object.values(data)[0];
+  const ads = Object.values(data);
+
+  console.log(ads)
 
   return <Ads products={ads} />;
 };
@@ -13,7 +15,7 @@ const ProductsPage = () => {
 export const loader = async () => {
   try {
     const res = await fetch(
-      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads.json'
+      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP.json'
     );
 
     if (!res.ok) {

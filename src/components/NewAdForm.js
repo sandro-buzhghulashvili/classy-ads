@@ -1,9 +1,20 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import userContext from "../store/user-context"
+
+import { useNavigate } from "react-router-dom";
 
 import classes from "./NewAdForm.module.scss"
 import useInput from "../hooks/use-input"
+import LoadingScreen from "./UI/LoadingScreen";
 
 const NewAdForm = () => {
+    const ctx = useContext(userContext)
+
+    const [loading,setLoading] = useState(false)
+
+    const navigate = useNavigate()
+    const [formIsValid,setFormIsValid] = useState(false)
+
     const {
         value : titleValue,
         hasError : titleHasError,
@@ -42,7 +53,7 @@ const NewAdForm = () => {
         valueChangeHandler : quantityChangeHandler,
         blurHandler : quantityBlurHandler,
         isValid : quantityIsValid
-    } = useInput(value => !(value.trim().length > 0))
+    } = useInput(value => !(Number(value)))
 
     const {
         value : ratingValue,
@@ -60,9 +71,63 @@ const NewAdForm = () => {
         isValid : reviewQuantityIsValid
     } = useInput(value => !(Number(value)))
 
+    const addProduct = async (product) => {
+        setLoading(true)
+        try {
+            const res = await fetch("https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP.json", {
+                method : 'POST',
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(product)
+            })
+
+            if(!res.ok) {
+                ctx.applyFlashMessage({status : 'error', message : 'Could not added new ad'})
+                navigate('/')
+            } else {
+                ctx.applyFlashMessage({status : 'success', message : "Successfully added new ad"})
+                navigate('/ads')
+            }
+
+            setLoading(false)
+        } catch(e) {
+            setLoading(false)
+            ctx.applyFlashMessage({status : 'error', message : 'Could not added new ad'})
+            navigate('/')
+        }
+    }
+
+    const submitHandler = event => {
+        event.preventDefault()
+
+        const obj = {
+            title : titleValue,
+            type : typeValue,
+            location : locationValue,
+            img : imgValue,
+            productQuantity : quantityValue,
+            reviews : ratingValue,
+            reviewQuantity : reviewQuantityValue
+        }
+
+        addProduct(obj)
+
+        console.log(obj)
+    }
+
+
+    useEffect(() => {
+        if(titleIsValid && locationIsValid && typeIsValid && imgIsValid && quantityIsValid && ratingIsValid && reviewQuantityIsValid) {
+            setFormIsValid(true)
+        } else {
+            setFormIsValid(false)
+        }
+    }, [titleIsValid,typeIsValid,locationIsValid,imgIsValid,quantityIsValid,ratingIsValid,reviewQuantityIsValid])
 
     return (
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={submitHandler}>
+            {loading && <LoadingScreen />}
             <div className={`${classes['form-control']} ${titleHasError ? classes.error : undefined}`}>
                 <label htmlFor="title">Title</label>
                 <input id="title" name="title" type="text" value={titleValue} onChange={titleChangeHandler} onBlur={titleBlurHandler}/>
@@ -92,7 +157,7 @@ const NewAdForm = () => {
                 <input id="reviewQuantity" name="reviewQuantity" type="text" value={reviewQuantityValue} onChange={reviewQuantityChangeHandler} onBlur={reviewQuantityBlurHandler} />
             </div>
             <div className={classes['form-control']}>
-                <button className={classes.submit}>Submit</button>
+                <button className={classes.submit} disabled={!formIsValid}>Submit</button>
             </div>
         </form>
     )

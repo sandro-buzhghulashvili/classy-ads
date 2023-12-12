@@ -8,10 +8,10 @@ const PopularProducts = () => {
 
   const fetchPopularAds = async () => {
     const res = await fetch(
-      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads.json'
+      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP.json'
     );
     const data = await res.json();
-    const popularAds = Object.values(data)[0].sort(
+    const popularAds = Object.values(data).sort(
       (a, b) => b.reviews - a.reviews
     );
     setPopularAds(popularAds.slice(0, 5));

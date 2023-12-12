@@ -66,10 +66,10 @@ const FeaturedBar = () => {
 
   const fetchAds = async () => {
     const res = await fetch(
-      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads.json'
+      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP.json'
     );
     const data = await res.json();
-    const ads = data[Object.keys(data)[0]];
+    const ads = Object.values(data);
     let featuredAds = [];
 
     for (let i of ads) {
@@ -184,7 +184,7 @@ const FeaturedBar = () => {
                 key={featuredAds.indexOf(ad)}
                 className={classes.card}
               >
-                <img src={Images[index]} alt="ad" />
+                <img src={ad.img} alt="ad" />
                 <div className={classes.type}>
                   <span>{ad.type}</span>
                   <span

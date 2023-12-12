@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import classes from './Ads.module.scss';
 import { Star } from 'lucide-react';
 
+import { motion } from 'framer-motion';
+
 export default function Ads({ products }) {
   const [titleFilter, setTitleFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
@@ -11,6 +13,8 @@ export default function Ads({ products }) {
   const [index, setIndex] = useState(0);
 
   let filterTypes = [];
+
+  console.log(products)
 
   products.forEach((ad) => {
     if (!filterTypes.includes(ad.type)) {
@@ -119,9 +123,9 @@ export default function Ads({ products }) {
   return (
     <div className={classes.ads}>
       {Object.values(ads).length > 0 ? (
-        <div className={classes.products}>
+        <motion.div variants={{hidden : {opacity : 0}, visible : {opacity : 1, transition : {staggerChildren : 0.2}}}} initial="hidden" animate="visible" className={classes.products}>
           {ads[index].map((product) => (
-            <div className={classes.product} key={products.indexOf(product)}>
+            <motion.div variants={{hidden : {opacity : 0}, visible : {opacity : 1}}} className={classes.product} key={products.indexOf(product)}>
               <img src={product.img} alt="ad" />
               <span className={classes.type}>{product.type}</span>
               <h2>{product.title}</h2>
@@ -130,7 +134,7 @@ export default function Ads({ products }) {
                 {displayStarRatings(Math.round(product.reviews))}
                 <p>( {product.reviewQuantity} reviews )</p>
               </div>
-            </div>
+            </motion.div>
           ))}
 
           <ul className={classes.pagination}>
@@ -148,7 +152,7 @@ export default function Ads({ products }) {
               );
             })}
           </ul>
-        </div>
+        </motion.div>
       ) : (
         <h1 className={classes.disclaimer}>Found no ads</h1>
       )}
