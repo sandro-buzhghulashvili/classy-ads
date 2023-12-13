@@ -45,7 +45,7 @@ const Navbar = () => {
         </span>
         <ul>
           <li>
-            <NavLink
+            <NavLink onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/"
             >
@@ -53,7 +53,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
+            <NavLink onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/ads"
             >
@@ -94,7 +94,7 @@ const Navbar = () => {
             </AnimatePresence>
           </li>
           <li>
-            <NavLink
+            <NavLink onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/blog"
             >
@@ -102,7 +102,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
+            <NavLink onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/contact"
             >
@@ -112,16 +112,16 @@ const Navbar = () => {
         </ul>
         {!ctx.user ? (
           <>
-            <NavLink className={classes.auth} to="form?mode=login">
+            <NavLink onClick={toggleNavbarHandler} className={classes.auth} to="form?mode=login">
               Login
             </NavLink>
-            <NavLink className={classes.auth} to="form?mode=signup">
+            <NavLink onClick={toggleNavbarHandler} className={classes.auth} to="form?mode=signup">
               Register
             </NavLink>
           </>
         ) : (
           <>
-            <NavLink
+            <NavLink onClick={toggleNavbarHandler}
               to="profile"
               className={({ isActive }) =>
                 `${classes.profile} ${isActive ? classes.active : undefined}`
@@ -129,7 +129,7 @@ const Navbar = () => {
             >
               Profile
             </NavLink>
-            <Link to="new" className={classes['new-ad']}>
+            <Link onClick={toggleNavbarHandler} to="new" className={classes['new-ad']}>
               + Post an Ad
             </Link>
           </>

@@ -14,7 +14,6 @@ export default function Ads({ products }) {
 
   let filterTypes = [];
 
-  console.log(products)
 
   products.forEach((ad) => {
     if (!filterTypes.includes(ad.type)) {
@@ -58,6 +57,7 @@ export default function Ads({ products }) {
 
   const titleFilterHandler = (event) => {
     setTitleFilter(event.target.value);
+    setIndex(0)
 
     let filteredProducts = [];
 
@@ -87,6 +87,7 @@ export default function Ads({ products }) {
   const typeFilterHandler = (event) => {
     let filteredProducts = [];
     setTypeFilter(event.target.value);
+    setIndex(0)
 
     if (titleFilter.length === 0) {
       if (event.target.value === 'default') {
@@ -117,8 +118,6 @@ export default function Ads({ products }) {
   }, [products, ads]);
 
   // [].concat(...Object.values(ads)) -> Array form of ads object
-
-  console.log(ads);
 
   return (
     <div className={classes.ads}>

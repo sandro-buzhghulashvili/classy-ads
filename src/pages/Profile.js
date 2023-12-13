@@ -1,14 +1,21 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import userContext from '../store/user-context';
 
-import { useNavigate } from 'react-router';
+import { json, useNavigate, useLoaderData } from 'react-router-dom';
 
 import classes from './Profile.module.scss';
 import { Star } from 'lucide-react';
 
 const ProfilePage = () => {
+  const data = useLoaderData()
+  const availableAds = Object.values(data)
+
   const ctx = useContext(userContext);
   const navigate = useNavigate()
+
+  const [myAds,setMyAds] = useState(ctx.user ? availableAds.filter(ad => ad.user === ctx.user.email) : [])
+
+  console.log(myAds)
 
   const displayStarRatings = (rating) => {
     const fullStars = Array.from({ length: rating }, (_, index) => (
@@ -67,8 +74,50 @@ const ProfilePage = () => {
           </h2>
         )}
       </div>
+      <h2>Your ads :</h2>
+      <div className={classes.favorites}>
+        {
+          myAds.length > 0 ?
+          myAds.map((ad) => {
+            return (
+              <div
+                className={classes.card}
+                key={myAds.indexOf(ad)}
+              >
+                <img src={ad.img} alt="ad" />
+                <span className={classes.type}>{ad.type}</span>
+                <h2>{ad.title}</h2>
+                <p>{ad.location}</p>
+                <div className={classes.rating}>
+                  {displayStarRatings(Math.floor(ad.reviews))}
+                  <p>( {ad.reviewQuantity} reviews )</p>
+                </div>
+              </div>
+            );
+          }) : 
+          <h2 className={classes.disclaimer}>
+          You haven't posted any ad
+          </h2>
+        }
+      </div>
     </div>
   );
 };
+
+export const loader = async () => {
+  try {
+    const res = await fetch(
+      'https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP.json'
+    );
+
+    if (!res.ok) {
+      throw json({ message: 'Could not fetch user credentials' }, { status: 500 });
+    }
+
+    return res;
+  } catch (e) {
+    throw json({ message: 'Could not fetch user credentials' }, { status: 500 });
+  }
+}
 
 export default ProfilePage;

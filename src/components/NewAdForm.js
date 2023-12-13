@@ -108,7 +108,8 @@ const NewAdForm = () => {
             img : imgValue,
             productQuantity : quantityValue,
             reviews : ratingValue,
-            reviewQuantity : reviewQuantityValue
+            reviewQuantity : reviewQuantityValue,
+            user : ctx.user.email
         }
 
         addProduct(obj)

@@ -7,7 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LandingPage from './pages/Landing';
 import ErrorPage from './pages/Error';
 import FormPage from './pages/Form';
-import ProfilePage from './pages/Profile';
+import ProfilePage, {loader as profileLoader} from './pages/Profile';
 import ProductsPage, { loader as productsLoader } from './pages/Products';
 import NewAd from './pages/NewAd';
 
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <ProfilePage />,
+        loader : profileLoader,
       },
       {
         path: 'ads',
