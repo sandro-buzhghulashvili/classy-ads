@@ -69,6 +69,7 @@ export default function Form() {
           setError('Could not registered user');
         } else {
           userCtx.login(user);
+          userCtx.applyFlashMessage({status : "success", message : "Successfully logged in"})
           navigate('/');
         }
       } else {
@@ -94,6 +95,7 @@ export default function Form() {
       usersData.forEach((user) => {
         if (user.email === emailValue && user.password === passwordValue) {
           userCtx.login(userData);
+          userCtx.applyFlashMessage({status : "success", message : "Successfully logged in"})
           navigate('/');
         } else {
           setError('Username or password is invalid');

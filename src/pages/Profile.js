@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import userContext from '../store/user-context';
 
+import LoadingScreen from '../components/UI/LoadingScreen';
+
 import { json, useNavigate, useLoaderData } from 'react-router-dom';
 
 import classes from './Profile.module.scss';
 import { Star } from 'lucide-react';
 
 const ProfilePage = () => {
+  const [loading,setLoading] = useState(false)
+
   const data = useLoaderData()
   const availableAds = Object.values(data)
 
@@ -34,6 +38,27 @@ const ProfilePage = () => {
     );
   };
 
+  const deleteAdHandler = async (ad) => {
+    const adIndex = availableAds.findIndex(element => JSON.stringify(element) === JSON.stringify(ad))
+    const databaseIndex = Object.keys(data)[adIndex]
+    console.log(databaseIndex)
+    try {
+      const res = fetch(`https://classy-ads-8216b-default-rtdb.firebaseio.com/ads/-Nk5BEfJrNCg89tznfhP/${databaseIndex}.json`, {
+        method : 'DELETE'
+      })
+      setMyAds(prevValue => prevValue.filter(obj => JSON.stringify(obj) !== JSON.stringify(ad)))
+      ctx.applyFlashMessage({status : 'success', message : 'Ad successfully deleted'})
+    } catch {
+      ctx.applyFlashMessage({status : 'error', message : 'Could not delete ad'})
+    }
+  }
+
+  const logoutHandler = () => {
+    ctx.logout()
+    ctx.applyFlashMessage({status : 'success', message : "Successfully logged out"})
+    navigate('/')
+  }
+
   useEffect(() => {
     if(!ctx.user) {
       ctx.applyFlashMessage({status : 'error', message : "User is not logged in"})
@@ -47,6 +72,7 @@ const ProfilePage = () => {
 
   return (
     <div className={classes.profile}>
+      {loading && <LoadingScreen />}
       <h2>User : {ctx.user.email}</h2>
       <h2>Favorite ADS:</h2>
       <div className={classes.favorites}>
@@ -92,6 +118,7 @@ const ProfilePage = () => {
                   {displayStarRatings(Math.floor(ad.reviews))}
                   <p>( {ad.reviewQuantity} reviews )</p>
                 </div>
+                <button className={classes.delete} onClick={() => deleteAdHandler(ad)}>Delete</button>
               </div>
             );
           }) : 
@@ -100,6 +127,7 @@ const ProfilePage = () => {
           </h2>
         }
       </div>
+      <button onClick={logoutHandler} className={classes.logout}>Logout</button>
     </div>
   );
 };

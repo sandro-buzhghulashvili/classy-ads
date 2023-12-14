@@ -94,20 +94,20 @@ const Navbar = () => {
             </AnimatePresence>
           </li>
           <li>
-            <NavLink onClick={toggleNavbarHandler}
+            <a href='#nowhere' onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/blog"
             >
               Blog
-            </NavLink>
+            </a>
           </li>
           <li>
-            <NavLink onClick={toggleNavbarHandler}
+            <a href='#nowhere' onClick={toggleNavbarHandler}
               className={({ isActive }) => (isActive ? classes.active : null)}
               to="/contact"
             >
               Contact
-            </NavLink>
+            </a>
           </li>
         </ul>
         {!ctx.user ? (
