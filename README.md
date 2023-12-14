@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-Classy Ads
+# Classy Ads
 
 ## Overview
 
