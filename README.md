@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project serves as a simulation of a full-stack application, utilizing the power of React and Firebase technologies. It showcases a dynamic user interface with animated sliders and modals created using the Framer Motion library. The application also integrates React Router, Sass, and various other tools to enhance the overall user experience.
+Welcome to our cutting-edge Crypto Search Web App! In this application, my primary focus is to showcase my skills in working with APIs. I extensively utilize various features of React routers, including loaders. This project is a simulation of a real-world application designed for individuals interested in cryptocurrency. Additionally, it offers a meticulously crafted modern and responsive user experience. Make this description shorter
+
+
 
 ### Technologies Used
 
